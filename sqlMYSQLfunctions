@@ -1,0 +1,28 @@
+//<-----------------------DANGER DANGER---------------------------------------------->
+//******* REMBEMER INCREASEING VALUE IN THE LOOP ALSO MAY CAUSE DAMAGE ON YOUR PC SO. 
+//******* SO IS HIGH DANGER IT CAN STOP WHILE RUNNING THIS FUNCTIONS
+
+
+//Creating table for dummy database.
+
+CREATE TABLE your_table (id int NOT NULL PRIMARY KEY AUTO_INCREMENT, val int);
+
+//in function insert that funcionts but remeber to call on right table in selected database.
+
+DELIMITER $$
+CREATE PROCEDURE prepare_data()
+BEGIN
+  DECLARE i INT DEFAULT 100;
+
+  WHILE i < 100000 DO
+    INSERT INTO your_table (val) VALUES (i);
+    SET i = i + 1;
+  END WHILE;
+END$$
+DELIMITER ;
+When you call it, you'll have 100k records:
+
+
+//in sql comand line or whatever you will use call command bellow to execute.
+
+CALL prepare_data();
